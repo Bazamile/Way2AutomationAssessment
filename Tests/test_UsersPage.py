@@ -22,7 +22,8 @@ class Test_001_UsersPage:
         self.driver.find_element(By.XPATH, self.up.columns_headings_firstName_xpath).is_displayed()
         self.driver.find_element(By.XPATH, self.up.columns_headings_lastName_xpath).is_displayed()
         self.driver.find_element(By.XPATH, self.up.columns_headings_email_xpath).is_displayed()
-        #print(self.up.columns_headings_email_xpath.text)
-        allure.attach(self.driver.get_screenshot_as_png(), name="last name", attachment_type=AttachmentType.PNG)
 
-        self.driver.quit()
+        allure.attach(self.driver.get_screenshot_as_png(), name="User fields", attachment_type=AttachmentType.PNG)
+        self.up.clickAddUserButton()
+
+        # self.driver.quit()
