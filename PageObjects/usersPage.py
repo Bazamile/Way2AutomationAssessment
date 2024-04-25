@@ -19,3 +19,5 @@ class UsersPage:
         wait = WebDriverWait(self.driver, 10)
         element = wait.until(EC.element_to_be_clickable((By.XPATH, self.button_AddUser_xpath)))
         element.click()
+
+
