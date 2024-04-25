@@ -10,7 +10,6 @@ from Utils.readProperties import ReadConfig
 class Test_001_UsersPage:
     BaseUrl = ReadConfig().getBaseURL()
 
-
     @pytest.mark.nkosi
     @allure.severity(allure.severity_level.CRITICAL)
     def test_verify_user_listTests(self, setup):
@@ -20,5 +19,10 @@ class Test_001_UsersPage:
         self.up = UsersPage(self.driver)
 
         allure.attach(self.driver.get_screenshot_as_png(), name="User List Page", attachment_type=AttachmentType.PNG)
+        self.driver.find_element(By.XPATH, self.up.columns_headings_firstName_xpath).is_displayed()
+        self.driver.find_element(By.XPATH, self.up.columns_headings_lastName_xpath).is_displayed()
+        self.driver.find_element(By.XPATH, self.up.columns_headings_email_xpath).is_displayed()
+        #print(self.up.columns_headings_email_xpath.text)
+        allure.attach(self.driver.get_screenshot_as_png(), name="last name", attachment_type=AttachmentType.PNG)
 
         self.driver.quit()
