@@ -19,4 +19,6 @@ class Test_001_UsersPage:
         self.driver.maximize_window()
         self.up = UsersPage(self.driver)
 
+        allure.attach(self.driver.get_screenshot_as_png(), name="User List Page", attachment_type=AttachmentType.PNG)
+
         self.driver.quit()
