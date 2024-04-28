@@ -13,14 +13,12 @@ class Test_001_UsersPage:
     fake = Faker()
     # name = fake.name().lastnane
     BaseUrl = ReadConfig().getBaseURL()
-    # FirstName = ReadConfig().getFirstName()
-    # LastName = ReadConfig().getLastName()
-    # Username = ReadConfig().getUsername()
-    # Password = ReadConfig().getPassword()
-    # Customer = ReadConfig().getCustomer()
-    # Role = ReadConfig().getRole()
-    # Email = ReadConfig().getEmail()
-    # Cellphone = ReadConfig().getCellphone()
+    FirstName = ReadConfig().getFirstName()
+    LastName = ReadConfig().getLastName()
+    Username = ReadConfig().getUsername()
+    Password = ReadConfig().getPassword()
+    Email = ReadConfig().getEmail()
+    Cellphone = ReadConfig().getCellphone()
 
     @pytest.mark.e2e
     @pytest.mark.AddUserSuccess
@@ -48,7 +46,7 @@ class Test_001_UsersPage:
 
         # self.aup.enterFirstName(self.fake.name())
         # self.aup.enterLastName(self.fake.name())
-        # allure.attach(self.driver.get_screenshot_as_png(), name="FullName", attachment_type=AttachmentType.PNG)
+        # allure.attach(self.driver.get_screenshot_as_png(), name="FirstName", attachment_type=AttachmentType.PNG)
 
         # self.aup.enterUserName(self.fake.name())
         # self.aup.enterPassword(self.fake.name())
@@ -57,21 +55,30 @@ class Test_001_UsersPage:
         # self.aup.enterEmail(self.fake.name())
         # self.aup.enterCellphone(self.fake.name())
 
+        self.aup.enterFirstName(self.FirstName)
+        self.aup.enterLastName(self.LastName)
+        allure.attach(self.driver.get_screenshot_as_png(), name="FullName", attachment_type=AttachmentType.PNG)
 
-        # self.aup.enterFirstName(self.FirstName)
-        # self.aup.enterLastName(self.LastName)
-        # self.aup.enterUserName(self.Username)
-        # self.aup.enterPassword(self.Password)
-        # self.aup.selectCustomer(self.Customer)
-        # self.aup.selectRole(self.Role)
-        # self.aup.enterEmail(self.Email)
-        # self.aup.enterCellphone(self.Cellphone)
-        # allure.attach(self.driver.get_screenshot_as_png(), name="Details", attachment_type=AttachmentType.PNG)
-        # self.aup.clickSaveButton()
-        # allure.attach(self.driver.get_screenshot_as_png(), name="User Added", attachment_type=AttachmentType.PNG)
+        self.aup.enterUserName(self.Username)
+        allure.attach(self.driver.get_screenshot_as_png(), name="UserName*", attachment_type=AttachmentType.PNG)
+
+        self.aup.enterPassword(self.Password)
+        allure.attach(self.driver.get_screenshot_as_png(), name="Password", attachment_type=AttachmentType.PNG)
+
+        self.aup.selectCustomer(self)
+        allure.attach(self.driver.get_screenshot_as_png(), name="Customer Type", attachment_type=AttachmentType.PNG)
+
+        self.aup.selectRole(self)
+        allure.attach(self.driver.get_screenshot_as_png(), name="Role Type", attachment_type=AttachmentType.PNG)
+
+        self.aup.enterEmail(self.Email)
+        self.aup.enterCellphone(self.Cellphone)
+        allure.attach(self.driver.get_screenshot_as_png(), name="Details", attachment_type=AttachmentType.PNG)
+        self.aup.clickSaveButton()
+        allure.attach(self.driver.get_screenshot_as_png(), name="User Added", attachment_type=AttachmentType.PNG)
+
+
         # # self.aup.clickCloseButton()
         # # allure.attach(self.driver.get_screenshot_as_png(), name="Users List Page", attachment_type=AttachmentType.PNG)
 
-
-
-        # self.driver.quit()
+        self.driver.quit()
