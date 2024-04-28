@@ -1,0 +1,1 @@
+pytest -s -v -m"e2e" --alluredir="allure-results" --browser chrome
