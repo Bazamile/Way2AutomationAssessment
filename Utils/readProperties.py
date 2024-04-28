@@ -31,15 +31,15 @@ class ReadConfig():
         Password = config.get('Users', 'Password')
         return Password
 
-    @staticmethod
-    def getCustomer():
-        Customer = config.get('Users', 'Customer')
-        return Customer
-
-    @staticmethod
-    def getRole():
-        Role = config.get('Users', 'Role')
-        return Role
+    # @staticmethod
+    # def getCustomer():
+    #     Customer = config.get('Users', 'Customer')
+    #     return Customer
+    #
+    # @staticmethod
+    # def getRole():
+    #     Role = config.get('Users', 'Role')
+    #     return Role
 
     @staticmethod
     def getEmail():
