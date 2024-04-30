@@ -1,4 +1,5 @@
 import allure
+import faker
 import pytest
 from allure_commons.types import AttachmentType
 from faker import Faker
@@ -11,6 +12,12 @@ from Utils.readProperties import ReadConfig
 
 class Test_001_UsersPage:
     fake = Faker()
+    FirstName = fake.name
+    LastName = fake.last_name
+    UserName = fake.user_name
+    Password = fake.password
+    Email = fake.email
+    Cellphone = fake.phone_number
     BaseUrl = ReadConfig().getBaseURL()
 
     @pytest.mark.nkosi
@@ -36,5 +43,16 @@ class Test_001_UsersPage:
         self.driver.find_element(By.XPATH, self.aup.labelAddUser_xpath).is_displayed()
         allure.attach(self.driver.get_screenshot_as_png(), name="Add User", attachment_type=AttachmentType.PNG)
 
-        self.aup.enterLastName(self.fake.name())
+        self.aup.enterFirstName(self.fake.name())
+        self.aup.enterLastName(self.fake.last_name())
+        self.aup.enterUserName(self.fake.user_name())
+        self.aup.enterPassword(self.fake.password())
+        self.aup.selectCustomer(self)
+        self.aup.selectRole(self)
+        self.aup.enterEmail(self.fake.email())
+        self.aup.enterCellphone(self.fake.phone_number())
+        self.aup.clickSaveButton()
+        allure.attach(self.driver.get_screenshot_as_png(), name="User Added", attachment_type=AttachmentType.PNG)
+
+
         # self.driver.quit()
