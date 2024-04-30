@@ -33,6 +33,7 @@ build/
 Reports/
 ### VS Code ###
 .vscode/
-
+allure-results/
 ### Mac OS ###
 .DS_Store
+.pytest_cache/

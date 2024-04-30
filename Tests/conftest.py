@@ -12,6 +12,10 @@ def setup(browser):
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
         print("Chrome Browser launched successfully")
 
+   # elif browser.lower() or browser.upper() == 'firefox':
+       # driver = webdriver.Firefox()
+        #print("Firefox Browser launched successfully")
+
     else:
         driver = webdriver.Firefox()
         print("Firefox Browser launched successfully")
