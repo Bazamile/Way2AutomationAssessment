@@ -1,48 +1,51 @@
-from tkinter.font import names
+import time
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+
 class AddUserPage:
-    addUserForm_xpath = "//h3[contains(.,'Add User')]"
-    FirstName_xpath = "//input[@name='FirstName']"
-    LastName_xpath = "//input[@name='LastName']"
-    UserName_xpath = "//input[@name='UserName']"
-    Password_xpath = "// input[ @ type = 'password']"
-    customerRadioButton_xpath = "//label[@class='radio ng-scope ng-binding'][contains(.,'Company AAA')]"
+    labelAddUser_xpath = "//h3[@class='ng-binding'][contains(.,'Add User')]"
+
+    label_addUser_xpath = "//h3[contains(.,'Add User')]"
+    textbox_FirstName_xpath = "//input[@name='FirstName']"
+    textbox_LastName_xpath = "//input[@name='LastName']"
+    textbox_UserName_xpath = "//input[@name='UserName']"
+    textbox_password_xpath = "// input[ @ type = 'password']"
+    customerRadioButton_xpath = "//input[contains(@value,'16')]"
     roleDropdownList_xpath = "//select[@name='RoleId']"
-    Email_xpath = "//input[@type='email']"
+    textbox_email_xpath = "//input[@type='email']"
     Cellphone_xpath = "//input[@name='Mobilephone']"
     save_button = "//button[contains(@ng-click,'save(user)')]"
-    #close_button = "//button[contains(@ng-click,'save(user)')]"
+    username_xpath = "(//td[@ng-repeat='column in columns'])[3]"
 
     def __init__(self, driver):
         self.driver = driver
 
-    def enterFirstName(self, firstname):
+    def enterFirstName(self,firstname):
         wait = WebDriverWait(self.driver, 10)
-        element = wait.until(EC.element_to_be_clickable((By.XPATH, self.FirstName_xpath)))
+        element = wait.until(EC.element_to_be_clickable((By.XPATH, self.textbox_FirstName_xpath)))
         element.send_keys(firstname)
 
-    def enterLastName(self, lastname):
+    def enterLastName(self,lastname):
         wait = WebDriverWait(self.driver, 10)
-        element = wait.until(EC.element_to_be_clickable((By.XPATH, self.LastName_xpath)))
+        element = wait.until(EC.element_to_be_clickable((By.XPATH, self.textbox_LastName_xpath)))
         element.send_keys(lastname)
 
-    def enterUserName(self, username):
+    def enterUserName(self,username):
         wait = WebDriverWait(self.driver, 10)
-        element = wait.until(EC.element_to_be_clickable((By.XPATH, self.UserName_xpath)))
+        element = wait.until(EC.element_to_be_clickable((By.XPATH, self.textbox_UserName_xpath)))
         element.send_keys(username)
 
-    def enterPassword(self, password):
+    def enterPassword(self,password):
         wait = WebDriverWait(self.driver, 10)
-        element = wait.until(EC.element_to_be_clickable((By.XPATH, self.Password_xpath)))
+        element = wait.until(EC.element_to_be_clickable((By.XPATH, self.textbox_password_xpath)))
         element.send_keys(password)
 
-    def selectCustomer(self, customer):
+    def selectCustomer(self,customer):
         wait = WebDriverWait(self.driver, 10)
         element = wait.until(EC.element_to_be_clickable((By.XPATH, self.customerRadioButton_xpath)))
         element.click()
@@ -56,9 +59,9 @@ class AddUserPage:
 
     def enterEmail(self, email):
         wait = WebDriverWait(self.driver, 10)
-        element = wait.until(EC.element_to_be_clickable((By.XPATH, self.Email_xpath)))
+        element = wait.until(EC.element_to_be_clickable((By.XPATH, self.textbox_email_xpath)))
         element.send_keys(email)
-    #
+
     def enterCellphone(self, cellphone):
         wait = WebDriverWait(self.driver, 10)
         element = wait.until(EC.element_to_be_clickable((By.XPATH, self.Cellphone_xpath)))
@@ -68,9 +71,3 @@ class AddUserPage:
         wait = WebDriverWait(self.driver, 10)
         element = wait.until(EC.element_to_be_clickable((By.XPATH, self.save_button)))
         element.click()
-
-    # def clickCloseButton(self):
-    #     wait = WebDriverWait(self.driver, 10)
-    #     element = wait.until(EC.element_to_be_clickable((By.XPATH, self.close_button)))
-    #     element.click()
-
