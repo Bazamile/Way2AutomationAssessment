@@ -20,6 +20,7 @@ class AddUserPage:
     textbox_email_xpath = "//input[@type='email']"
     Cellphone_xpath = "//input[@name='Mobilephone']"
     save_button = "//button[contains(@ng-click,'save(user)')]"
+    username_xpath = "(//td[@ng-repeat='column in columns'])[3]"
 
     def __init__(self, driver):
         self.driver = driver

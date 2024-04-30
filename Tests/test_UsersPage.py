@@ -1,8 +1,10 @@
+
 import allure
 import faker
 import pytest
 from allure_commons.types import AttachmentType
 from faker import Faker
+import random
 from selenium.webdriver.common.by import By
 
 from PageObjects.addUserPage import AddUserPage
@@ -12,9 +14,11 @@ from Utils.readProperties import ReadConfig
 
 class Test_001_UsersPage:
     fake = Faker()
-    FirstName = fake.name
+    FirstName = fake.name()
+    name = FirstName.split()[0]
     LastName = fake.last_name
-    UserName = fake.user_name
+    random_numbers = random.randint(1, 10000000)
+    UserName = name +"_"+str(random_numbers)
     Password = fake.password
     Email = fake.email
     Cellphone = fake.phone_number
@@ -29,12 +33,10 @@ class Test_001_UsersPage:
         self.up = UsersPage(self.driver)
         self.aup = AddUserPage(self.driver)
 
-
         allure.attach(self.driver.get_screenshot_as_png(), name="User List Page", attachment_type=AttachmentType.PNG)
         self.driver.find_element(By.XPATH, self.up.columns_headings_firstName_xpath).is_displayed()
         self.driver.find_element(By.XPATH, self.up.columns_headings_lastName_xpath).is_displayed()
         self.driver.find_element(By.XPATH, self.up.columns_headings_email_xpath).is_displayed()
-
 
         allure.attach(self.driver.get_screenshot_as_png(), name="User fields", attachment_type=AttachmentType.PNG)
 
@@ -45,7 +47,7 @@ class Test_001_UsersPage:
 
         self.aup.enterFirstName(self.fake.name())
         self.aup.enterLastName(self.fake.last_name())
-        self.aup.enterUserName(self.fake.user_name())
+        self.aup.enterUserName(self.UserName)
         self.aup.enterPassword(self.fake.password())
         self.aup.selectCustomer(self)
         self.aup.selectRole(self)
@@ -53,6 +55,8 @@ class Test_001_UsersPage:
         self.aup.enterCellphone(self.fake.phone_number())
         self.aup.clickSaveButton()
         allure.attach(self.driver.get_screenshot_as_png(), name="User Added", attachment_type=AttachmentType.PNG)
+        Expected_Username = self.driver.find_element(By.XPATH, self.aup.username_xpath).text
+        assert Expected_Username == self.UserName
+        allure.attach(self.driver.get_screenshot_as_png(), name="User Added To The List", attachment_type=AttachmentType.PNG)
 
-
-        # self.driver.quit()
+        self.driver.quit()
